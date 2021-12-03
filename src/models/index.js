@@ -1,7 +1,9 @@
 import { mapModel } from './mapModel';
+import { spillsModel } from './spillsModel';
 
 const models = {
-    mapModel
+    mapModel,
+    spillsModel
 };
 
 export default models;
