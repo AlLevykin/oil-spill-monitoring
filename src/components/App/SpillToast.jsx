@@ -13,7 +13,7 @@ const SpillToast = () => {
     }
 
     return (
-        <div class="toast-container position-absolute bottom-0 end-0 p-3">
+        <div class="toast-container position-absolute top-0 start-50 translate-middle-x p-3">
             <Toast onClose={toastHandler} show={showToast} delay={3000} autohide>
                 <Toast.Header>
                     {

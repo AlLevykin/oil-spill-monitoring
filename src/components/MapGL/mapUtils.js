@@ -2,6 +2,10 @@ export const deg2rad = (deg) => {
     return (deg * Math.PI / 180);
 }
 
+export const rounded = function(number){
+    return +number.toFixed(2);
+}
+
 export const distanceEarth = (p1, p2) => {
     const lat1r = deg2rad(p1[0]);
     const lon1r = deg2rad(p1[1]);

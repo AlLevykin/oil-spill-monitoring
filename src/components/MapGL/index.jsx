@@ -4,7 +4,7 @@ import DeckGL from '@deck.gl/react';
 import { MapboxLayer } from '@deck.gl/mapbox';
 import { IconLayer, TextLayer, ArcLayer } from '@deck.gl/layers';
 import ReactMapGL, { _MapContext as MapContext, NavigationControl } from 'react-map-gl';
-import { distanceEarth } from './mapUtils';
+import { distanceEarth, rounded } from './mapUtils';
 
 const ICON_MAPPING = {
     marker: { x: 0, y: 0, width: 128, height: 128, mask: true }
@@ -47,7 +47,7 @@ const MapGL = () => {
                 lng: 72.837281,
                 lat: 60.758176,
                 text: "Наземный транспорт",
-                tooltip: `Расстояние = ${distanceEarth([72.837281, 60.758176], [s.lng, s.lat])} км.`
+                tooltip: `Расстояние = ${rounded(distanceEarth([72.837281, 60.758176], [s.lng, s.lat]))} км.`
             })
         }
 
@@ -56,7 +56,7 @@ const MapGL = () => {
                 lng: 72.616331,
                 lat: 61.088212,
                 text: "БПЛА",
-                tooltip: `Расстояние = ${distanceEarth([72.616331, 61.088212], [s.lng, s.lat])} км.`
+                tooltip: `Расстояние = ${rounded(distanceEarth([72.616331, 61.088212], [s.lng, s.lat]))} км.`
             })
         }
 
@@ -65,7 +65,7 @@ const MapGL = () => {
                 lng: 73.396230,
                 lat: 61.254035,
                 text: "Вертолёт",
-                tooltip: `Расстояние = ${distanceEarth([73.396230, 61.254035], [s.lng, s.lat])} км.`
+                tooltip: `Расстояние = ${rounded(distanceEarth([73.396230, 61.254035], [s.lng, s.lat]))} км.`
             })
         }
 
