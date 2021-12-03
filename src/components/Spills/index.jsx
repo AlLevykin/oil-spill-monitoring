@@ -1,29 +1,64 @@
-import { Button } from 'react-bootstrap';
+import { Form } from "react-bootstrap"
+import Sattelite from "./Satellite"
 
 const Spills = ({ spill }) => {
 
     return (
         <div className="spills px-2">
-            <h5 className="text-secondary">Предприятие</h5>
-            <p>{spill.company}</p>
-            <h5 className="text-secondary">Лицензионный участок</h5>
-            <p>{spill.licenseName} ({spill.licenseId})</p>            
+            <h5 className="text-primary">Лицензионный участок</h5>
+            <p>{spill.licenseName} ({spill.licenseId})</p>
+            <h5 className="text-primary">Вероятное загразнение</h5>
             <div className="row me-2">
-                <div class="col-10 align-self-center">
-                <h5 className="text-secondary">Вероятное загразнение</h5>
-                    <p>{spill.lat}, {spill.lng}</p>
+                <div className="col-6">
+                    <p className="text-dark my-0"><strong>Район</strong></p>
                 </div>
-                <div class="col-2">
-                    <Button variant="secondary">
-                        <span className="mx-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-clockwise" viewBox="0 0 16 16">
-                                <path fillRule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z" />
-                                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
-                            </svg>
-                        </span>
-                    </Button>
+                <div className="col-6">
+                    <p className="my-0">{spill.region}</p>
                 </div>
             </div>
+            <div className="row me-2">
+                <div className="col-6">
+                    <p className="text-dark my-0"><strong>Координаты</strong></p>
+                </div>
+                <div className="col-6">
+                    <p className="my-0"><small>{spill.lat}, {spill.lng}</small></p>
+                </div>
+            </div>
+            <div className="row me-2">
+                <div className="col-6">
+                    <p className="text-dark my-0"><strong>Тип загразнения</strong></p>
+                </div>
+                <div className="col-6">
+                    <p className="my-0">{spill.spill}</p>
+                </div>
+            </div>
+            <div className="row me-2">
+                <div className="col-6">
+                    <p className="text-dark"><strong>Площадь</strong></p>
+                </div>
+                <div className="col-6">
+                    <p>{spill.S} Га</p>
+                </div>
+            </div>
+            <Sattelite />
+            <h5 className="text-primary mt-2">Средства натурного исследования</h5>
+            <Form>
+                <Form.Check
+                    type="checkbox"
+                    label="Наземный транспорт"
+                >
+                </Form.Check>
+                <Form.Check
+                    type="checkbox"
+                    label="Беспилотный летательный аппарат"
+                >
+                </Form.Check>
+                <Form.Check
+                    type="checkbox"
+                    label="Вертолёт"
+                >
+                </Form.Check>
+            </Form>
         </div>
     )
 }
