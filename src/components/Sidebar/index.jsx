@@ -18,7 +18,7 @@ const Sidebar = () => {
     }    
 
     return (
-        <div className="sidebar position-fixed border border-light shadow rounded-3 ms-5 mt-5 p-2 bg-white">
+        <div className="sidebar position-fixed border border-light shadow rounded-3 ms-4 mt-4 p-2 bg-white">
             <div className="row">
                 <div className="col-8">
                     {

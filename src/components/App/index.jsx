@@ -4,6 +4,7 @@ import MapGL from "../MapGL";
 import Sidebar from "../Sidebar";
 import store from '../../store';
 import Viewer from '../Spills/Viewer';
+import SpillToast from './SpillToast';
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
       <Sidebar />
       <MapGL />
       <Viewer />
+      <SpillToast />
     </Provider>
   );
 }
