@@ -1,0 +1,10 @@
+.sidebar {
+  width: 400px;
+  height: calc(100vh - 6rem);
+  z-index: 1045;
+}
+
+.spills {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
