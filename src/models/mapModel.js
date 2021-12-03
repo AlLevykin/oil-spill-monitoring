@@ -10,15 +10,15 @@ export const mapModel = {
             bearing: 0
         }
     },
-    reducers: {
-        goToPoint(state, coordinates) {
+    reducers: {     
+        goToPoint(state, lng, lat) {
             return {
                 ...state, currentState: {
                     minZoom: 9.5,
-                    longitude: coordinates[0],
-                    latitude: coordinates[1],
+                    longitude: lng,
+                    latitude: lat,
                     pitch: 60,
-                    zoom: 12,
+                    zoom: 11,
                     bearing: 0
                 }
             };

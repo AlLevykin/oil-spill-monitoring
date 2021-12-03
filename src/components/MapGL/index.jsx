@@ -2,7 +2,12 @@ import { useState, useRef, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import DeckGL from '@deck.gl/react';
 import { MapboxLayer } from '@deck.gl/mapbox';
+import { IconLayer, TextLayer } from '@deck.gl/layers';
 import ReactMapGL, { _MapContext as MapContext, NavigationControl } from 'react-map-gl';
+
+const ICON_MAPPING = {
+    marker: { x: 0, y: 0, width: 128, height: 128, mask: true }
+  };
 
 const navControlStyle = {
     right: 10,
@@ -19,6 +24,8 @@ const MapGL = () => {
     const deckRef = useRef(null);
     const mapRef = useRef(null);
     const currentState = useSelector(state => state.map.currentState);
+    const items = useSelector(state => state.spills);
+    const current = useSelector(state => state.currentSpill);
 
     const onMapLoad = useCallback(() => {
         const map = mapRef.current.getMap();
@@ -27,7 +34,40 @@ const MapGL = () => {
         map.addLayer(
           new MapboxLayer({ id: "my-scatterplot", deck }),
         );
-      }, []);    
+      }, []);  
+    
+     const spillLayer = () => {
+
+        const data = items.length === 0 ? [] : [items[current]]
+
+        return [new IconLayer({
+              id: 'weather-stations-markers',
+              data,
+              pickable: true,
+              iconAtlas: 'api/icon-atlas.png',
+              iconMapping: ICON_MAPPING,
+              getIcon: d => 'marker',
+              sizeScale: 15,
+              getPosition: d => [d.lng, d.lat],
+              getSize: 3,
+              getColor: [255, 0, 0],
+            }),
+            new TextLayer({
+                id: 'weather-stations-names',
+                data,
+                getPosition: d => [d.lng, d.lat],
+                getText: d => (d.licenseName + " (" + d.licenseId + ")"),
+                getPixelOffset: [10, 10],
+                getSize: 18,
+                getAngle: 0,
+                getTextAnchor: 'start',
+                getAlignmentBaseline: 'top',
+                characterSet: 'auto'
+              })
+        ]
+    }
+
+    const layers = [...spillLayer()];
 
     return (
         <div className="position-relative vh-100 w-100">
@@ -36,7 +76,7 @@ const MapGL = () => {
                 initialViewState={currentState}
                 controller={true}
                 onWebGLInitialized={setGLContext}
-                //layers={layers}
+                layers={layers}
                 glOptions={{
                     stencil: true
                 }}
