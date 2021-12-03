@@ -1,7 +1,20 @@
 import { Form } from "react-bootstrap"
 import Sattelite from "./Satellite"
+import store from '../../store';
 
 const Spills = ({ spill }) => {
+
+    const suvHandler = (event) => {
+        store.dispatch.transport.setSuv(event.target.checked);
+    }
+
+    const droneHandler = (event) => {
+        store.dispatch.transport.setDrone(event.target.checked);
+    }   
+
+    const helicopterHandler = (event) => {
+        store.dispatch.transport.setHelicopter(event.target.checked);
+    } 
 
     return (
         <div className="spills px-2">
@@ -46,16 +59,19 @@ const Spills = ({ spill }) => {
                 <Form.Check
                     type="checkbox"
                     label="Наземный транспорт"
+                    onChange={(e) => suvHandler(e)}
                 >
                 </Form.Check>
                 <Form.Check
                     type="checkbox"
                     label="Беспилотный летательный аппарат"
+                    onChange={(e) => droneHandler(e)}
                 >
                 </Form.Check>
                 <Form.Check
                     type="checkbox"
                     label="Вертолёт"
+                    onChange={(e) => helicopterHandler(e)}
                 >
                 </Form.Check>
             </Form>
